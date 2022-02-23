@@ -29,9 +29,5 @@ return [
         'encodingaeskey' => '', 
         // 用户信息返回结果语言版本 zh_CN 简体，zh_TW 繁体，en 英语
         'web_lang' => 'zh_CN',
-        // 商户ID
-        'mch_id' => '',
-        // 支付key
-        'pay_key' => '',
     ]
 ];

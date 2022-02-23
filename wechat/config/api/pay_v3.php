@@ -1,7 +1,7 @@
 <?php
 /**
  * +----------------------------------------------------------------------
- * 公共配置
+ * 微信支付 - v3 - 开发配置
  * +----------------------------------------------------------------------
  * 官网：https://www.sw-x.cn
  * +----------------------------------------------------------------------
@@ -12,14 +12,10 @@
 */
 
 return [
-    // CURL 超时时间(S)
-    'outtime' => 10,
-    // AccessToken的 Redis名称
-    'access_token_redis_name' => 'swx_access_token_',
-    // AccessToken的 失效时间(S)
-    'access_token_expire' => 3600,
-    // 公众号自定义的配置项
-    'official_account' => \wechat\config\querier\official_account::class,
-    // 微信支付自定义的配置项
-    'pay' => \wechat\config\querier\pay::class,
+    // 接口域名
+    'api_domain' => 'https://api.mch.weixin.qq.com/v3',
+    // 接口列表（%s% 为参数占位符）
+    'api_list' => [
+        
+    ]
 ];

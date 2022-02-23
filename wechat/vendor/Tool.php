@@ -106,7 +106,6 @@ class Tool
         }
         return json_decode($res, true);
     }
-
     
     /**
      * 发送XML
@@ -136,6 +135,8 @@ class Tool
         if (!$body) {
             return false;
         }
-        return json_decode($body, true);
+        return $body;
     }
+
+    
 }

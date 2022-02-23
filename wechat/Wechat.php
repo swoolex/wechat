@@ -93,4 +93,87 @@ class Wechat
         
         return new \wechat\vendor\driver\official\Sdk($this->config, $api);
     }
+
+    /**
+     * 微信支付开发实例
+    */
+    public function pay() {
+        return $this;
+    }
+    public function v2() {
+        $path = EXTEND_PATH.'wechat'.DS.'config'.DS;
+        $api_file = $path.'api'.DS.'pay_v2.php';
+        $config_file = $path.'attribute'.DS.'pay_v2.php';
+
+        if (!file_exists($api_file)) {
+            throw new \Exception("Missing file ：".$api_file);
+            return false;
+        }
+        if (!file_exists($config_file)) {
+            throw new \Exception("Missing file ：".$config_file);
+            return false;
+        }
+        
+        $api = require $api_file;
+
+        $array = require $config_file;
+        $client_config = require $path.'config.php';
+        $querier = (new $client_config['pay'])->run();
+        if (!empty($querier)) {
+            $array = $querier;
+        }
+
+        $config = [];
+        foreach ($array as $v) {
+            if ($v['driver'] == $this->driver) {
+                $config = $v;
+                break;
+            }
+        }
+        if (empty($config)) {
+            throw new \Exception("Configuration driver ：".$this->driver.' Undefined');
+            return false;
+        }
+        $this->config = array_merge($config, $this->config);
+        
+        return new \wechat\vendor\driver\pay\v2\Sdk($this->config, $api);
+    }
+    public function v3() {
+        $path = EXTEND_PATH.'wechat'.DS.'config'.DS;
+        $api_file = $path.'api'.DS.'pay_v3.php';
+        $config_file = $path.'attribute'.DS.'pay_v3.php';
+
+        if (!file_exists($api_file)) {
+            throw new \Exception("Missing file ：".$api_file);
+            return false;
+        }
+        if (!file_exists($config_file)) {
+            throw new \Exception("Missing file ：".$config_file);
+            return false;
+        }
+        
+        $api = require $api_file;
+
+        $array = require $config_file;
+        $client_config = require $path.'config.php';
+        $querier = (new $client_config['pay'])->run();
+        if (!empty($querier)) {
+            $array = $querier;
+        }
+
+        $config = [];
+        foreach ($array as $v) {
+            if ($v['driver'] == $this->driver) {
+                $config = $v;
+                break;
+            }
+        }
+        if (empty($config)) {
+            throw new \Exception("Configuration driver ：".$this->driver.' Undefined');
+            return false;
+        }
+        $this->config = array_merge($config, $this->config);
+        
+        return new \wechat\vendor\driver\pay\v3\Sdk($this->config, $api);
+    }
 }

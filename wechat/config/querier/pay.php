@@ -1,7 +1,7 @@
 <?php
 /**
  * +----------------------------------------------------------------------
- * 公共配置
+ * 微信支付 - 账号配置 - DB查询器，返回值结构参考attribute目录下同名配置文件
  * +----------------------------------------------------------------------
  * 官网：https://www.sw-x.cn
  * +----------------------------------------------------------------------
@@ -11,15 +11,18 @@
  * +----------------------------------------------------------------------
 */
 
-return [
-    // CURL 超时时间(S)
-    'outtime' => 10,
-    // AccessToken的 Redis名称
-    'access_token_redis_name' => 'swx_access_token_',
-    // AccessToken的 失效时间(S)
-    'access_token_expire' => 3600,
-    // 公众号自定义的配置项
-    'official_account' => \wechat\config\querier\official_account::class,
-    // 微信支付自定义的配置项
-    'pay' => \wechat\config\querier\pay::class,
-];
+namespace wechat\config\querier;
+use wechat\config\querier\AbstractClass;
+
+class pay extends AbstractClass
+{
+    /**
+     * 查询器入口
+     * 
+     * @return array
+    */
+    public function run() {
+        // 此处用于查询Db获取动态配置项，返回给SDK代替静态配置加载
+        return [];
+    }
+}
