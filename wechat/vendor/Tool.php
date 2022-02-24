@@ -114,19 +114,23 @@ class Tool
      * @param xml $data
      * @return void
     */
-    public static function xmlCurl($url, $data=[]) {
+    public static function xmlCurl($url, $data=[], $ssl_cert=false, $ssl_key=false) {
         $client_config = require EXTEND_PATH.'wechat'.DS.'config'.DS.'config.php';
         $client_timeout = $client_config['outtime'];
-        
+
+        $set = [
+            'timeout' => $client_timeout, 
+            'keep_alive' => false,
+        ];
+        if ($ssl_cert) $set['ssl_cert_file'] = $ssl_cert;
+        if ($ssl_key) $set['ssl_key_file'] = $ssl_key;
+
         $httpClient = new \x\Client();
         $client = $httpClient->http()
                 ->domain($url)
                 ->body($data)
-                ->set([
-                    'timeout' => $client_timeout, 
-                    'keep_alive' => false,
-                ]);
-              
+                ->set($set);
+
         if ($data) {
             $body = $client->post();
         } else {

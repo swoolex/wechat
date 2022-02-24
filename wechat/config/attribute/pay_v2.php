@@ -23,5 +23,9 @@ return [
         'pay_key' => '',
         // 默认支付回调地址
         'notify_url' => '',
+        // ssl_cert证书地址（绝对路径）
+        'ssl_cert' => '',
+        // ssl_key证书地址（绝对路径）
+        'ssl_key' => '',
     ]
 ];
